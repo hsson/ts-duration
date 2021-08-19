@@ -6,6 +6,10 @@
   "types": "dist/index.d.ts",
   "license": "MIT",
   "author": "Alexander Håkansson <alex.hsson@gmail.com> (https://hsson.dev)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hsson/ts-duration"
+  },
   "keywords": [
     "time",
     "duration"

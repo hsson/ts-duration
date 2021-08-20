@@ -110,6 +110,24 @@ export class Duration {
     }
 
     round(m: Duration): Duration {
-        throw new Error(`round(${m}) not implemented`);
+        if (m.value <= 0) {
+            return this;
+        }
+
+        let remainder = this.value % m.value;
+        if (this.value >= 0) {
+            if (remainder + remainder < m.value) {
+                return new Duration(this.value - remainder);
+            } else {
+                return new Duration(this.value + m.value - remainder);
+            }
+        } else {
+            remainder = -remainder;
+            if (remainder + remainder < m.value) {
+                return new Duration(this.value + remainder);
+            } else {
+                return new Duration(this.value - m.value + remainder);
+            }
+        }
     }
 }

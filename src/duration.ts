@@ -108,4 +108,8 @@ export class Duration {
     sub(d: Duration): Duration {
         return new Duration(this.value - d.value);
     }
+
+    round(m: Duration): Duration {
+        throw new Error(`round(${m}) not implemented`);
+    }
 }

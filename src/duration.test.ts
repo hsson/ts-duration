@@ -171,4 +171,20 @@ describe('Duration', () => {
             });
         });
     });
+
+    describe('until & since', () => {
+        it('should correctly return duration until a specified future Date', () => {
+            const dateIn2Hours = new Date();
+            dateIn2Hours.setTime(dateIn2Hours.getTime() + 2 * 60 * 60 * 1000);
+            const until = Duration.until(dateIn2Hours);
+            expect(Math.round(until.hours)).toEqual(2);
+        });
+
+        it('should correctly return duration since a specified past Date', () => {
+            const date2HoursAgo = new Date();
+            date2HoursAgo.setTime(date2HoursAgo.getTime() - 2 * 60 * 60 * 1000);
+            const since = Duration.since(date2HoursAgo);
+            expect(Math.round(since.hours)).toEqual(2);
+        });
+    });
 });

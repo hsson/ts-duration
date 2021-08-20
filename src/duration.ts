@@ -39,6 +39,18 @@ export class Duration {
         return new Duration(d * HOUR);
     }
 
+    static until(t: Date): Duration {
+        const now = this.millisecond(new Date().getTime());
+        const then = this.millisecond(t.getTime());
+        return then.sub(now);
+    }
+
+    static since(t: Date): Duration {
+        const now = this.millisecond(new Date().getTime());
+        const then = this.millisecond(t.getTime());
+        return now.sub(then);
+    }
+
     public get nanoseconds(): number {
         return this.value;
     }

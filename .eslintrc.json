@@ -18,11 +18,13 @@
   "plugins": [
     "@typescript-eslint",
     "prettier",
-    "jest"
+    "jest",
+    "eslint-plugin-tsdoc"
   ],
   "rules": {
     "prettier/prettier": "error",
     "no-unreachable": "error",
-    "jest/valid-expect": "error"
+    "jest/valid-expect": "error",
+    "tsdoc/syntax": "error"
   }
 }

@@ -108,4 +108,26 @@ export class Duration {
     sub(d: Duration): Duration {
         return new Duration(this.value - d.value);
     }
+
+    round(m: Duration): Duration {
+        if (m.value <= 0) {
+            return this;
+        }
+
+        let remainder = this.value % m.value;
+        if (this.value >= 0) {
+            if (remainder + remainder < m.value) {
+                return new Duration(this.value - remainder);
+            } else {
+                return new Duration(this.value + m.value - remainder);
+            }
+        } else {
+            remainder = -remainder;
+            if (remainder + remainder < m.value) {
+                return new Duration(this.value + remainder);
+            } else {
+                return new Duration(this.value - m.value + remainder);
+            }
+        }
+    }
 }

@@ -187,4 +187,29 @@ describe('Duration', () => {
             expect(Math.round(since.hours)).toEqual(2);
         });
     });
+
+    describe('round', () => {
+        const cases: Duration[][] = [
+            [Duration.second(0), Duration.second(1), Duration.second(0)],
+            [Duration.minute(70), Duration.hour(1), Duration.minute(60)],
+            [Duration.minute(1), Duration.second(-11), Duration.minute(1)],
+            [Duration.minute(1), Duration.nanosecond(0), Duration.minute(1)],
+            [Duration.minute(1), Duration.nanosecond(1), Duration.minute(1)],
+            [Duration.minute(2), Duration.minute(1), Duration.minute(2)],
+            [Duration.second(130), Duration.minute(1), Duration.minute(2)],
+            [Duration.second(150), Duration.minute(1), Duration.minute(3)],
+            [Duration.second(170), Duration.minute(1), Duration.minute(3)],
+            [Duration.minute(-1), Duration.nanosecond(1), Duration.minute(-1)],
+            [Duration.minute(-2), Duration.minute(1), Duration.minute(-2)],
+            [Duration.second(-130), Duration.minute(1), Duration.minute(-2)],
+            [Duration.second(-150), Duration.minute(1), Duration.minute(-3)],
+            [Duration.second(-170), Duration.minute(1), Duration.minute(-3)]
+        ];
+
+        for (const [d, m, want] of cases) {
+            it(`${d}.round(${m}) should equal ${want}`, () => {
+                expect(d.round(m)).toEqual(want);
+            });
+        }
+    });
 });
